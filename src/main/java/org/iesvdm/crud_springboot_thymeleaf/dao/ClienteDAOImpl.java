@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public class ClienteDAOImpl implements ClienteDAO{
 
-
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     /* OTRA FORMA DE INYECTAR LA JDBC EN EL CONSTRUCTOR (sin usar Autowired):
@@ -22,12 +22,21 @@ public class ClienteDAOImpl implements ClienteDAO{
 
     @Override
     public void create(Cliente cliente) {
-
+        jdbcTemplate.update("INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoría) VALUES (?, ?, ?, ?, ?)",
+                cliente.getNombre(),
+                cliente.getApellido1(),
+                cliente.getApellido2(),
+                cliente.getCiudad(),
+                cliente.getCategoria());
     }
 
     @Override
     public List<Cliente> getAll() {
-        return null;
+
+        List<Cliente> clienteList = jdbcTemplate.query(
+                "SELECT * FROM cliente",
+                (rs, rowNum -> new Cliente(rs.getInt("id")))
+        )
     }
 
     @Override
@@ -37,6 +46,11 @@ public class ClienteDAOImpl implements ClienteDAO{
 
     @Override
     public void update(Cliente cliente) {
+
+    }
+
+    @Override
+    public void delete(int id) {
 
     }
 }
