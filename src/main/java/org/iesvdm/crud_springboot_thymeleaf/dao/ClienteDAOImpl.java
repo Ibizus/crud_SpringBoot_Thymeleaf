@@ -38,7 +38,7 @@ public class ClienteDAOImpl implements ClienteDAO{
                 (rs, rowNum -> new Cliente(rs.getInt("id")))
         )
     }
-
+5e
     @Override
     public Optional<Cliente> find(int id) {
         return null;
