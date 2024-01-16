@@ -1,6 +1,6 @@
-package org.iesvdm.crud_springboot_thymeleaf.dao;
+package org.iesvdm.dao;
 
-import org.iesvdm.crud_springboot_thymeleaf.domain.Comercial;
+import org.iesvdm.domain.Comercial;
 
 import java.util.List;
 import java.util.Optional;

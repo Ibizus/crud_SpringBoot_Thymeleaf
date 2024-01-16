@@ -1,4 +1,4 @@
-package org.iesvdm.crud_springboot_thymeleaf;
+package org.iesvdm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

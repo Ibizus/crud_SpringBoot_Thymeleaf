@@ -1,16 +1,15 @@
-package org.iesvdm.crud_springboot_thymeleaf.domain;
+package org.iesvdm.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Cliente {
+public class Comercial {
 
     private int id;
     private String nombre;
     private String apellido1;
     private String apellido2;
-    private String ciudad;
-    private int categoria;
+    private float comision;
 }
