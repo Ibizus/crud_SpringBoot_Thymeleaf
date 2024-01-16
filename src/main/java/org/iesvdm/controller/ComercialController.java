@@ -2,11 +2,13 @@ package org.iesvdm.controller;
 
 import org.iesvdm.domain.Comercial;
 import org.iesvdm.service.ComercialService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
+@Controller
 public class ComercialController {
 
     private ComercialService comercialService;
