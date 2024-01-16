@@ -29,4 +29,12 @@ public class ClienteController {
 
         return "clientes";
     }
+
+    @GetMapping("/editarCliente")
+    public String editado(){
+
+        return "editarCliente";
+    }
+
+
 }
