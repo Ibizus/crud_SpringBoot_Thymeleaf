@@ -11,61 +11,55 @@
         }
 
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 
-<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" >
+<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" class="text-muted">
     <div class="clearfix">
-        <div style="float: left; width: 50%">
+        <div style="float: left; width: 50%" class="ms-1 text-secondary">
             <h1>Detalle Cliente</h1>
         </div>
         <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 
             <div style="position: absolute; left: 39%; top : 39%;">
                 <form action="/clientes" >
-                    <input type="submit" value="Volver" />
+                    <input type="submit" value="Volver" class="btn btn-success bg-gradient"/>
                 </form>
             </div>
 
         </div>
     </div>
 
-    <div class="clearfix">
-        <hr/>
-    </div>
-
-    <div class="clearfix">
-        <div style="float: left;width: 14%">Id</div>
+    <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
+        <div style="float: left;width: 8%">Id</div>
         <div style="float: left;width: 14%">Nombre</div>
         <div style="float: left;width: 14%">Apellido1</div>
         <div style="float: left;width: 14%">Apellido2</div>
         <div style="float: left;width: 14%">Ciudad</div>
-        <div style="float: left;width: 14%">Categoría</div>
-        <div style="float: none;width: auto;overflow: hidden;">Acción</div>
-    </div>
-    <div class="clearfix">
-        <hr/>
+        <div style="float: left;width: 12%">Categoría</div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center;">Acción</div>
     </div>
 
     <div style="margin-top: 6px;" class="clearfix">
-        <div style="float: left;width: 14%" th:text="${cliente.id}">0</div>
-        <div style="float: left;width: 14%" th:text="${cliente.nombre}">nombre</div>
+        <div class="ps-3" style="float: left;width: 14%" th:text="${cliente.id}">0</div>
+        <div style="float: left;width: 8%" th:text="${cliente.nombre}">nombre</div>
         <div style="float: left;width: 14%" th:text="${cliente.apellido1}">apellido1</div>
         <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</div>
         <div style="float: left;width: 14%" th:text="${cliente.ciudad}">ciudad</div>
-        <div style="float: left;width: 14%" th:text="${cliente.categoria}">categoría</div>
-        <div style="float: none;width: auto;overflow: hidden;">
+        <div style="float: left;width: 12%" th:text="${cliente.categoria}">categoría</div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center;">
 
             <form th:action="@{/clientes/editar/}+${cliente.id} " style="display: inline;">
-                <input type="submit" value="Editar" />
+                <input type="submit" value="Editar" class="btn btn-primary bg-gradient"/>
             </form>
-            <form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post" style="display: inline;" class="btn btn-danger">
-                <input type="submit" value="Eliminar" />
+            <form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post" style="display: inline;">
+                <input type="submit" value="Eliminar" class="btn btn-danger bg-gradient"/>
             </form>
         </div>
     </div>
 
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
