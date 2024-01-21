@@ -17,45 +17,44 @@
 <div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" class="text-muted">
     <div class="clearfix">
         <div style="float: left; width: 50%" class="ms-1 text-secondary">
-            <h1>Clientes</h1>
+            <h1 th:text="#{title.clientes}"></h1>
         </div>
 
         <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
             <div style="position: absolute; left: 39%; top : 39%;">
                 <form action="/clientes/crear">
-                    <input type="submit" value="Crear" class="btn btn-success bg-gradient">
+                    <input type="submit" th:value="#{btn.crear}" class="btn btn-success bg-gradient">
                 </form>
             </div>
         </div>
-
     </div>
 
     <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
         <div style="float: left;width: 8%">Id</div>
-        <div style="float: left;width: 14%">Nombre</div>
-        <div style="float: left;width: 14%">Apellido1</div>
-        <div style="float: left;width: 14%">Apellido2</div>
-        <div style="float: left;width: 14%">Ciudad</div>
-        <div style="float: left;width: 12%">Categoría</div>
-        <div style="float: none;width: auto;overflow: hidden;text-align: center;">Acción</div>
+        <div style="float: left;width: 14%" th:text="#{etq.nombre}"></div>
+        <div style="float: left;width: 14%" th:text="#{etq.apellido1}"></div>
+        <div style="float: left;width: 14%" th:text="#{etq.apellido2}"></div>
+        <div style="float: left;width: 14%" th:text="#{etq.ciudad}"></div>
+        <div style="float: left;width: 12%" th:text="#{etq.categoria}"></div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center;" th:text="#{etq.accion}"></div>
     </div>
 
     <div  th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
-        <div class="ps-3" style="float: left;width: 8%" th:text="${cliente.id}">0</div>
-        <div style="float: left;width: 14%" th:text="${cliente.nombre}">nombre</div>
-        <div style="float: left;width: 14%" th:text="${cliente.apellido1}">apellido1</div>
-        <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</div>
-        <div style="float: left;width: 14%" th:text="${cliente.ciudad}">ciudad</div>
-        <div style="float: left;width: 12%" th:text="${cliente.categoria}">categoría</div>
+        <div class="ps-3" style="float: left;width: 8%" th:text="${cliente.id}">output</div>
+        <div style="float: left;width: 14%" th:text="${cliente.nombre}">output</div>
+        <div style="float: left;width: 14%" th:text="${cliente.apellido1}">output</div>
+        <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">output</div>
+        <div style="float: left;width: 14%" th:text="${cliente.ciudad}">output</div>
+        <div style="float: left;width: 12%" th:text="${cliente.categoria}">output</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;">
             <form th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
-                <input type="submit" value="Ver Detalle" class="btn btn-primary bg-gradient"/>
+                <input type="submit" th:value="#{btn.detalle}" class="btn btn-primary bg-gradient"/>
             </form>
             <form th:action="@{/clientes/editar/}+${cliente.id} " style="display: inline;">
-                <input type="submit" value="Editar" class="btn btn-primary bg-gradient"/>
+                <input type="submit" th:value="#{btn.editar}" class="btn btn-primary bg-gradient"/>
             </form>
             <form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post" style="display: inline;">
-                <input type="submit" value="Eliminar" class="btn btn-danger bg-gradient"/>
+                <input type="submit" th:value="#{btn.eliminar}" class="btn btn-danger bg-gradient"/>
             </form>
         </div>
     </div>
