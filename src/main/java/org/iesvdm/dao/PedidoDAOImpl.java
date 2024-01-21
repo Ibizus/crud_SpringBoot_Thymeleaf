@@ -2,6 +2,8 @@ package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.domain.Pedido;
+import org.iesvdm.service.ClienteService;
+import org.iesvdm.service.ComercialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,31 +16,39 @@ import java.util.Optional;
 @Repository // Componente de Spring de la capa de persistencia
 public class PedidoDAOImpl implements PedidoDAO{
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public void create(Pedido pedido) {
+        private JdbcTemplate jdbcTemplate;
+        private ClienteService clienteService;
+        private ComercialService comercialService;
 
+        /* OTRA FORMA DE INYECTAR LA JDBC EN EL CONSTRUCTOR (sin usar Autowired):*/
+    public PedidoDAOImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public List<Pedido> getAll() {
-        return null;
-    }
 
     @Override
-    public Optional<Pedido> find(int id) {
-        return Optional.empty();
+    public Optional<List<Pedido>> findPedidoByComercialId(int idComercial) {
+
+        List<Pedido> pedidosComercial =  jdbcTemplate
+                .query("SELECT * FROM pedido WHERE id_comercial = ?"
+                        , (rs, rowNum) -> new Pedido(rs.getInt("id"),
+                                rs.getDouble("total"),
+                                rs.getDate("fecha"),
+                                rs.getInt("id_cliente"),
+                                rs.getInt("id_comercial"),
+                                clienteService.one(rs.getInt("id_cliente")),
+                                comercialService.one(rs.getInt("id_comercial")))
+                        , idComercial
+                );
+
+        if (pedidosComercial != null) {
+            return Optional.of(pedidosComercial);
+        }
+        else {
+            log.info("No hay pedidos del comercial indicado.");
+            return Optional.empty();
+        }
     }
 
-    @Override
-    public void update(Pedido pedido) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
 }

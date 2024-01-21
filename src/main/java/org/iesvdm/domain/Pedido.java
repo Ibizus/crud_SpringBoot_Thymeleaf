@@ -18,4 +18,5 @@ public class Pedido {
     private int id_comercial;
     private Cliente cliente;
     private Comercial comercial;
+
 }

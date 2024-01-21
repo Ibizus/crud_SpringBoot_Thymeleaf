@@ -2,6 +2,7 @@ package org.iesvdm.controller;
 
 import org.iesvdm.domain.Comercial;
 import org.iesvdm.domain.Comercial;
+import org.iesvdm.domain.Pedido;
 import org.iesvdm.service.ComercialService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,9 @@ public class ComercialController {
     public String detalle(Model model, @PathVariable Integer id ) {
 
         Comercial comercial = comercialService.one(id);
+        List<Pedido> pedidosComercial = comercialService.pedidosComercial(id);
         model.addAttribute("comercial", comercial);
+        model.addAttribute("listaPedidos", pedidosComercial);
 
         return "detalleComercial";
     }
