@@ -19,38 +19,38 @@
     <!-- TITULO DETALLE COMERCIAL -->
     <div class="clearfix">
         <div style="float: left; width: 50%">
-            <h1 th:text="#{title.detalleComercial}"></h1>
+            <h1 th:text="#{title.detalleComercial}">Detalle Comercial</h1>
         </div>
         <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
             <div style="position: absolute; left: 39%; top : 39%;">
                 <form action="/comerciales" >
-                    <input type="submit" th:value="#{btn.volver}" class="btn btn-secondary bg-gradient"/>
+                    <input type="submit" th:value="#{btn.volver}" value="Volver" class="btn btn-secondary bg-gradient"/>
                 </form>
             </div>
         </div>
     </div>
     <!-- CABECERA DETALLE COMERCIAL -->
     <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
-        <div style="float: left;width: 8%">Id</div>
-        <div style="float: left;width: 14%">Nombre</div>
-        <div style="float: left;width: 14%">Apellido1</div>
-        <div style="float: left;width: 14%">Apellido2</div>
-        <div style="float: left;width: 14%">Comisión</div>
-        <div style="float: none;width: auto;overflow: hidden;text-align: center">Acción</div>
+        <div style="float: left;width: 8%" th:text="#{etq.id}">Id</div>
+        <div style="float: left;width: 14%" th:text="#{etq.nombre}">Nombre</div>
+        <div style="float: left;width: 14%" th:text="#{etq.apellido1}">Apellido1</div>
+        <div style="float: left;width: 14%" th:text="#{etq.apellido2}">Apellido2</div>
+        <div style="float: left;width: 14%" th:text="#{etq.comision}">Comisión</div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center" th:text="#{etq.accion}">Acción</div>
     </div>
     <!-- DATOS DETALLE COMERCIAL -->
     <div style="margin-top: 6px;" class="clearfix">
-        <div class="ps-3" style="float: left;width: 8%" th:text="${comercial.id}">0</div>
-        <div style="float: left;width: 14%" th:text="${comercial.nombre}">nombre</div>
-        <div style="float: left;width: 14%" th:text="${comercial.apellido1}">apellido1</div>
-        <div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
-        <div style="float: left;width: 14%" th:text="${comercial.comision}">ciudad</div>
+        <div class="ps-3" style="float: left;width: 8%" th:text="${comercial.id}">output</div>
+        <div style="float: left;width: 14%" th:text="${comercial.nombre}">output</div>
+        <div style="float: left;width: 14%" th:text="${comercial.apellido1}">output</div>
+        <div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">output</div>
+        <div style="float: left;width: 14%" th:text="${comercial.comision}">output</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;">
             <form th:action="@{/comerciales/editar/}+${comercial.id} " style="display: inline;">
-                <input type="submit" th:value="#{btn.editar}" class="btn btn-primary bg-gradient"/>
+                <input type="submit" th:value="#{btn.editar}" value="Editar" class="btn btn-primary bg-gradient"/>
             </form>
             <form th:action="@{/comerciales/borrar/__${comercial.id}__}" method="post" style="display: inline;">
-                <input type="submit" th:value="#{btn.eliminar}" class="btn btn-danger bg-gradient"/>
+                <input type="submit" th:value="#{btn.eliminar}" value="Borrar" class="btn btn-danger bg-gradient"/>
             </form>
         </div>
     </div>
@@ -59,12 +59,12 @@
     <!-- TITULO DETALLE PEDIDOS -->
     <div class="clearfix">
         <div class="ms-3 mt-5" style="float: left; width: 50%">
-            <h3 th:text="#{title.pedidos}"></h3>
+            <h3 th:text="#{title.pedidos}">Pedidos</h3>
         </div>
     </div>
     <!-- CABECERA DETALLE PEDIDOS -->
     <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
-        <div style="float: left;width: 8%">Id</div>
+        <div style="float: left;width: 8%" th:text="#{etq.id}">Id</div>
         <div style="float: left;width: 14%" th:text="#{etq.total}">Total</div>
         <div style="float: left;width: 14%" th:text="#{etq.fecha}">Fecha</div>
         <div style="float: left;width: 14%" th:text="#{etq.idCliente}">Id Cliente</div>
@@ -73,14 +73,14 @@
     </div>
     <!-- LISTADO PEDIDOS -->
     <div  th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
-        <div class="ps-3" style="float: left;width: 8%" th:text="${pedido.id}">0</div>
-        <div style="float: left;width: 14%" th:text="${pedido.total}">total</div>
-        <div style="float: left;width: 14%" th:text="${pedido.fecha}">fecha</div>
-        <div style="float: left;width: 14%" th:text="${pedido.id_cliente ?: '&nbsp;'}">id cliente</div>
-        <div style="float: left;width: 14%" th:text="${pedido.cliente.nombre}">nombre cliente</div>
+        <div class="ps-3" style="float: left;width: 8%" th:text="${pedido.id}">output</div>
+        <div style="float: left;width: 14%" th:text="${pedido.total}">output</div>
+        <div style="float: left;width: 14%" th:text="${pedido.fecha}">output</div>
+        <div style="float: left;width: 14%" th:text="${pedido.id_cliente ?: '&nbsp;'}">output</div>
+        <div style="float: left;width: 14%" th:text="${pedido.cliente.nombre}">output</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;">
             <form th:action="@{/clientes/__${pedido.id_cliente }__}" style="display: inline;">
-                <input type="submit" th:value="#{btn.detalleCliente}" class="btn btn-primary bg-gradient"/>
+                <input type="submit" th:value="#{btn.detalleCliente}" value="Detalle Ciente" class="btn btn-primary bg-gradient"/>
             </form>
         </div>
     </div>

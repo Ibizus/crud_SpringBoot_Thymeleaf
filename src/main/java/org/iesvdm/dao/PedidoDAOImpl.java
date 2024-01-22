@@ -16,12 +16,13 @@ import java.util.Optional;
 @Repository // Componente de Spring de la capa de persistencia
 public class PedidoDAOImpl implements PedidoDAO{
 
-
         private JdbcTemplate jdbcTemplate;
-        private ClienteService clienteService;
-        private ComercialService comercialService;
+        @Autowired
+        private ComercialDAO comercialDAO;
+        @Autowired
+        private ClienteDAO clienteDAO;
 
-        /* OTRA FORMA DE INYECTAR LA JDBC EN EL CONSTRUCTOR (sin usar Autowired):*/
+    /* OTRA FORMA DE INYECTAR LA JDBC EN EL CONSTRUCTOR (sin usar Autowired):*/
     public PedidoDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -37,8 +38,9 @@ public class PedidoDAOImpl implements PedidoDAO{
                                 rs.getDate("fecha"),
                                 rs.getInt("id_cliente"),
                                 rs.getInt("id_comercial"),
-                                clienteService.one(rs.getInt("id_cliente")),
-                                comercialService.one(rs.getInt("id_comercial")))
+                                clienteDAO.find(rs.getInt("id_cliente")).get(),
+                                comercialDAO.find(rs.getInt("id_comercial")).get()
+                                )
                         , idComercial
                 );
 
