@@ -2,6 +2,7 @@ package org.iesvdm.service;
 
 import org.iesvdm.dao.ClienteDAO;
 import org.iesvdm.domain.Cliente;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -9,12 +10,8 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
+    @Autowired
     private ClienteDAO clienteDAO;
-
-    // Al inyectar en el constructor evitamos AUTOWIRED:
-    public ClienteService(ClienteDAO clienteDAO) {
-        this.clienteDAO = clienteDAO;
-    }
 
     public List<Cliente> listAll() {
         return clienteDAO.getAll();
