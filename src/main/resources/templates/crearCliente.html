@@ -15,7 +15,7 @@
 <body>
 
 <div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" class="text-muted">
-    <form th:action="@{/clientes/crear/}" th:object="${cliente}" method="post">
+    <form th:action="@{/clientes/crear}" th:object="${cliente}" method="post">
         <div class="clearfix mb-3">
             <div style="float: left; width: 50%;text-align: center" class="ms-1 text-secondary">
                 <h1 th:text="#{title.crearCliente}">Crear Cliente</h1>
