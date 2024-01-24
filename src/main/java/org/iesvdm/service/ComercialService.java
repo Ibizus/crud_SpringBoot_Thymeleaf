@@ -4,17 +4,22 @@ import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.domain.Comercial;
 import org.iesvdm.domain.Pedido;
-import org.iesvdm.dto.PedidosDetailsDTO;
+import org.iesvdm.dto.PedidoDetailsDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+
+import static java.util.stream.Collectors.summarizingDouble;
 
 @Service
 public class ComercialService {
 
     private ComercialDAO comercialDAO;
     private PedidoDAO pedidoDAO;
+    private PedidoDetailsDTO pedidoDTO;
 
     // Al inyectar en el constructor evitamos AUTOWIRED:
     public ComercialService(ComercialDAO comercialDAO, PedidoDAO pedidoDAO){
@@ -59,11 +64,28 @@ public class ComercialService {
             return null;
     }
 
-    public PedidosDetailsDTO infoPedidosComercial(List<Pedido> pedidosComercial){
+    public PedidoDetailsDTO infoPedidosComercial(List<Pedido> pedidosComercial){
 
+        /*
         double suma = pedidosComercial.stream()
-                .reduce(total -> Pedido.getTotal());
+                .map(Pedido::getTotal)
+                .reduce(0.0, Double::sum);
 
-        return null;
+        double media = pedidosComercial.stream()
+                .map(Pedido::getTotal)
+                .reduce(0.0, Double::sum)/pedidosComercial.size();*/
+
+        DoubleSummaryStatistics pedidoStatics = pedidosComercial.stream()
+                .collect(summarizingDouble(Pedido::getTotal));
+
+        PedidoDetailsDTO pedidoDTO = new PedidoDetailsDTO(
+                pedidoStatics.getCount(),
+                pedidoStatics.getSum(),
+                pedidoStatics.getAverage(),
+                pedidoStatics.getMax(),
+                pedidoStatics.getMin());
+
+        return pedidoDTO;
     }
+
 }
