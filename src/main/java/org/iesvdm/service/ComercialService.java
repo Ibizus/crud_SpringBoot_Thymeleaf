@@ -4,6 +4,7 @@ import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.domain.Comercial;
 import org.iesvdm.domain.Pedido;
+import org.iesvdm.dto.PedidosDetailsDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,14 +36,6 @@ public class ComercialService {
             return null;
     }
 
-    public List<Pedido> pedidosComercial(Integer id){
-        Optional<List<Pedido>> optPedidos = pedidoDAO.findPedidoByComercialId(id);
-        if (optPedidos.isPresent())
-            return optPedidos.get();
-        else
-            return null;
-    }
-
     public void newComercial(Comercial comercial) {
 
         comercialDAO.create(comercial);
@@ -58,4 +51,19 @@ public class ComercialService {
         comercialDAO.delete(id);
     }
 
+    public List<Pedido> pedidosComercial(Integer id){
+        Optional<List<Pedido>> optPedidos = pedidoDAO.findPedidoByComercialId(id);
+        if (optPedidos.isPresent())
+            return optPedidos.get();
+        else
+            return null;
+    }
+
+    public PedidosDetailsDTO infoPedidosComercial(List<Pedido> pedidosComercial){
+
+        double suma = pedidosComercial.stream()
+                .reduce(total -> Pedido.getTotal());
+
+        return null;
+    }
 }
