@@ -74,7 +74,7 @@
     <!-- LISTADO PEDIDOS -->
     <div  th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
         <div class="ps-3" style="float: left;width: 8%" th:text="${pedido.id}">output</div>
-        <div style="float: left;width: 14%" th:text="${pedido.total}">output</div>
+        <div style="float: left;width: 14%" th:text="${#numbers.formatDecimal(pedido.total, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">output</div>
         <div style="float: left;width: 14%" th:text="${pedido.fecha}">output</div>
         <div style="float: left;width: 14%" th:text="${pedido.id_cliente ?: '&nbsp;'}">output</div>
         <div style="float: left;width: 14%" th:text="${pedido.cliente.nombre}">output</div>
@@ -85,6 +85,37 @@
         </div>
     </div>
 
+    <!-- ESTADÍSTICAS PEDIDOS -->
+    <div class="clearfix col-8 p-3 m-2 bg-light bg-gradient text-muted rounded">
+        <div style="float: left;width: 40%" th:text="#{title.pedido.estadisticas}">Estadísticas:</div>
+        <div style="float: right;width: 50%" th:text="#{etq.pedidos.media}+' '+${#numbers.formatDecimal(detallesPedidos.media, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">Importe medio pedidos</div>
+        <div style="float: right;width: 50%" th:text="#{etq.pedidos.suma}+' '+${#numbers.formatDecimal(detallesPedidos.sumaTotal, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">Importe total pedidos</div>
+    </div>
+
+    <!-- TITULO FACTURACIÓN/CLIENTE -->
+    <div class="clearfix">
+        <div class="ms-3 mt-3" style="float: left; width: 50%">
+            <h3 th:text="#{title.cliente.facturacion}">Facturación por Cliente</h3>
+        </div>
+    </div>
+    <!-- CABECERA FACTURACIÓN POR CLIENTE -->
+    <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
+        <div style="float: left;width: 20%" th:text="#{etq.idCliente}">Id Cliente</div>
+        <div style="float: left;width: 20%" th:text="#{etq.nombreCliente}">Nombre Cliente</div>
+        <div style="float: left;width: 20%" th:text="#{etq.cliente.facturacionTotal}">Facturación total</div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center;" th:text="#{etq.accion}">Acción</div>
+    </div>
+    <!-- LISTADO CLIENTES -->
+    <div  th:each="clientBillingDTO : ${listaFacturacionClientesDTO}" style="margin-top: 6px;" class="clearfix">
+        <div class="ps-3" style="float: left;width: 20%" th:text="${clientBillingDTO.idCliente ?: '&nbsp;'}">output</div>
+        <div style="float: left;width: 20%" th:text="${clientBillingDTO.nombreCliente}">output</div>
+        <div style="float: left;width: 20%" th:text="${#numbers.formatDecimal(clientBillingDTO.totalCliente, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">output</div>
+        <div style="float: none;width: auto;overflow: hidden;text-align: center;">
+            <form th:action="@{/clientes/__${clientBillingDTO.idCliente}__}" style="display: inline;">
+                <input type="submit" th:value="#{btn.detalleCliente}" value="Detalle Ciente" class="btn btn-primary bg-gradient"/>
+            </form>
+        </div>
+    </div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.summarizingDouble;
 
 @Service
@@ -64,16 +64,17 @@ public class ComercialService {
             return null;
     }
 
-    public PedidoDetailsDTO infoPedidosComercial(List<Pedido> pedidosComercial){
+    public PedidoDetailsDTO infoPedidosComercial(Integer id){
 
-        /*
-        double suma = pedidosComercial.stream()
-                .map(Pedido::getTotal)
-                .reduce(0.0, Double::sum);
+        List<Pedido> pedidosComercial = pedidosComercial(id);
 
-        double media = pedidosComercial.stream()
-                .map(Pedido::getTotal)
-                .reduce(0.0, Double::sum)/pedidosComercial.size();*/
+        int id_pedido_max = pedidosComercial.stream()
+                .max(comparing(Pedido::getTotal))
+                .map(Pedido::getId).get();
+
+        int id_pedido_min = pedidosComercial.stream()
+                .min(comparing(Pedido::getTotal))
+                .map(Pedido::getId).get();
 
         DoubleSummaryStatistics pedidoStatics = pedidosComercial.stream()
                 .collect(summarizingDouble(Pedido::getTotal));
@@ -82,8 +83,8 @@ public class ComercialService {
                 pedidoStatics.getCount(),
                 pedidoStatics.getSum(),
                 pedidoStatics.getAverage(),
-                pedidoStatics.getMax(),
-                pedidoStatics.getMin());
+                id_pedido_min,
+                id_pedido_max);
 
         return pedidoDTO;
     }

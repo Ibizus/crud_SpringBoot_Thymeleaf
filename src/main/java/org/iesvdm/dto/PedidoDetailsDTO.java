@@ -12,6 +12,6 @@ public class PedidoDetailsDTO {
     private long numeroPedidos;
     private Double sumaTotal;
     private Double media;
-    private Double id_Pedido_Max;
-    private Double id_Pedido_Min;
+    private int id_Pedido_Min;
+    private int id_Pedido_Max;
 }

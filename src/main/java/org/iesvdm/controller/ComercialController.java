@@ -1,9 +1,12 @@
 package org.iesvdm.controller;
 
-import org.iesvdm.domain.Comercial;
+import org.iesvdm.dao.PedidoDAOImpl;
 import org.iesvdm.domain.Comercial;
 import org.iesvdm.domain.Pedido;
+import org.iesvdm.dto.ClientBillingDTO;
+import org.iesvdm.dto.PedidoDetailsDTO;
 import org.iesvdm.service.ComercialService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,8 @@ import java.util.List;
 @Controller
 public class ComercialController {
 
+    @Autowired
+    private PedidoDAOImpl pedidoDAO;
     private ComercialService comercialService;
 
     // Inyeccion por constructor, se omite @Autowired
@@ -39,8 +44,13 @@ public class ComercialController {
 
         Comercial comercial = comercialService.one(id);
         List<Pedido> pedidosComercial = comercialService.pedidosComercial(id);
+        PedidoDetailsDTO detallesPedidos = comercialService.infoPedidosComercial(id);
+        List<ClientBillingDTO> ListaFacturacionClientesDTO = pedidoDAO.facturacionClientesPorIdComercial(id).get();
+
         model.addAttribute("comercial", comercial);
         model.addAttribute("listaPedidos", pedidosComercial);
+        model.addAttribute("detallesPedidos", detallesPedidos);
+        model.addAttribute("listaFacturacionClientesDTO", ListaFacturacionClientesDTO);
 
         return "detalleComercial";
     }
