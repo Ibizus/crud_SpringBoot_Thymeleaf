@@ -2,6 +2,7 @@ package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.domain.Comercial;
+import org.iesvdm.dto.AgentStatisticsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -108,4 +109,48 @@ public class ComercialDAOImpl implements ComercialDAO{
 
         log.info("Delete de Comercial con {} registros eliminados.", rows);
     }
+
+
+    public int numPedidosTotales(int idComercial){
+
+        return jdbcTemplate.queryForObject(
+                "SELECT COUNT(p.id) as numPedidos FROM comercial c JOIN pedido p ON c.id = p.id_comercial WHERE c.id = ?",
+                (rs, numRow) -> rs.getInt("numPedidos"),
+                idComercial);
+    }
+
+    public int numPedidosTrimestre(int idComercial){
+
+        return jdbcTemplate.queryForObject(
+                "SELECT COUNT(p.id) as numPedidos FROM comercial c JOIN pedido p ON c.id = p.id_comercial WHERE c.id = ? AND timestampdiff(MONTH , p.fecha, current_date) <= 3",
+                (rs, numRow) -> rs.getInt("numPedidos"),
+                idComercial);
+    }
+
+    public int numPedidosSemestre(int idComercial){
+
+        return jdbcTemplate.queryForObject(
+                "SELECT COUNT(p.id) as numPedidos FROM comercial c JOIN pedido p ON c.id = p.id_comercial WHERE c.id = ? AND timestampdiff(MONTH , p.fecha, current_date) <= 6",
+                (rs, numRow) -> rs.getInt("numPedidos"),
+                idComercial);
+    }
+
+    public int numPedidosAnual(int idComercial){
+
+        int pedidosAnual = jdbcTemplate.queryForObject(
+                "SELECT COUNT(p.id) as numPedidos FROM comercial c JOIN pedido p ON c.id = p.id_comercial WHERE c.id = ? AND timestampdiff(YEAR , p.fecha, current_date) <= 1",
+                (rs, numRow) -> rs.getInt("numPedidos"),
+                idComercial);
+
+        return pedidosAnual;
+    }
+
+    public int numPedidosLustro(int idComercial){
+
+        return jdbcTemplate.queryForObject(
+                "SELECT COUNT(p.id) as numPedidos FROM comercial c JOIN pedido p ON c.id = p.id_comercial WHERE c.id = ? AND timestampdiff(YEAR , p.fecha, current_date) <= 5",
+                (rs, numRow) -> rs.getInt("numPedidos"),
+                idComercial);
+    }
+
 }

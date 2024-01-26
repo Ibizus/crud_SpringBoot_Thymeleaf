@@ -1,58 +1,50 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Crea Comercial</title>
-    <style>
-        .clearfix::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title th:text="#{title.crearComercial}">Crear Comercial</title>
+    <th:block th:insert="~{fragments/head.html :: headfiles}"/>
 </head>
+
 <body>
+    <div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" class="text-muted">
+        <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
+            <div class="clearfix mb-3">
+                <div style="float: left; width: 50%;text-align: center" class="ms-1 text-secondary">
+                    <h1 th:text="#{title.crearComercial}">Crear Comercial</h1>
+                </div>
 
-<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" class="text-muted">
-    <form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
-        <div class="clearfix mb-3">
-            <div style="float: left; width: 50%;text-align: center" class="ms-1 text-secondary">
-                <h1 th:text="#{title.crearComercial}">Crear Comercial</h1>
-            </div>
-
-            <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-                <div style="position: absolute; left: 39%; top : 39%;">
-                    <input type="submit" th:value="#{btn.crear}" value="Crear" class="btn btn-success bg-gradient"/>
+                <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+                    <div style="position: absolute; left: 39%; top : 39%;">
+                        <input type="submit" th:value="#{btn.crear}" value="Crear" class="btn btn-success bg-gradient"/>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div style="margin-top: 6px;" class="clearfix">
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.nombre}">Nombre</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{nombre}" class="border"/>
+            <div style="margin-top: 6px;" class="clearfix">
+                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.nombre}">Nombre</div>
+                <div style="float: none;width: auto;overflow: hidden;">
+                    <input th:field="*{nombre}" class="border"/>
+                </div>
+
+                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido1}">Apellido1</div>
+                <div style="float: none;width: auto;overflow: hidden;">
+                    <input th:field="*{apellido1}" class="border"/>
+                </div>
+
+                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido2}">Apellido1</div>
+                <div style="float: none;width: auto;overflow: hidden;">
+                    <input th:field="*{apellido2}" class="border"/>
+                </div>
+
+                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.comision}">Comisión</div>
+                <div style="float: none;width: auto;overflow: hidden;">
+                    <input th:field="*{comision}" class="border"/>
+                </div>
             </div>
 
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido1}">Apellido1</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido1}" class="border"/>
-            </div>
-
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido2}">Apellido1</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido2}" class="border"/>
-            </div>
-
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.comision}">Comisión</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{comision}" class="border"/>
-            </div>
-        </div>
-
-    </form>
-</div>
+        </form>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

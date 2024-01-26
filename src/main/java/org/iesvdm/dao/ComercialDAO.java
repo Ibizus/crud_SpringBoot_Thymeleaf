@@ -16,4 +16,6 @@ public interface ComercialDAO {
     public void update(Comercial comercial);
 
     public void delete(int id);
+
+
 }

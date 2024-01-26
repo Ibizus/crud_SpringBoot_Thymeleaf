@@ -1,20 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Detalle Comercial</title>
-    <style>
-        .clearfix::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title th:text="#{title.detalleComercial}">Detalle Comercial</title>
+    <th:block th:insert="~{fragments/head.html :: headfiles}"/>
 </head>
-<body>
 
-<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" class="text-muted">
+<body>
+<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" class="text-muted">
 
     <!-- TITULO DETALLE COMERCIAL -->
     <div class="clearfix">
@@ -85,11 +77,11 @@
         </div>
     </div>
 
-
+    <!-- ESTE BLOQUE SOLO SE EJECUTA SI EL COMERCIAL TIENE PEDIDOS REALIZADOS -->
     <th:block th:if="${detallesPedidos != null}">
 
+        <!-- ESTADÍSTICAS PEDIDOS -->
         <th:block th:if="${detallesPedidos.id_Pedido_Min != detallesPedidos.id_Pedido_Max}">
-    <!-- ESTADÍSTICAS PEDIDOS -->
     <div class="clearfix col-8 p-3 m-2 bg-light bg-gradient text-muted rounded">
         <div style="float: left;width: 40%" th:text="#{title.pedido.estadisticas}">Estadísticas:</div>
         <div style="float: right;width: 50%" th:text="#{etq.pedidos.media}+' '+${#numbers.formatDecimal(detallesPedidos.media, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">Importe medio pedidos</div>
@@ -117,7 +109,7 @@
         <div style="float: left;width: 20%" th:text="${#numbers.formatDecimal(clientBillingDTO.totalCliente, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">output</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;">
             <form th:action="@{/clientes/__${clientBillingDTO.idCliente}__}" style="display: inline;">
-                <input type="submit" th:value="#{btn.detalleCliente}" value="Detalle Ciente" class="btn btn-primary bg-gradient"/>
+                <input type="submit" th:value="#{btn.detalleCliente}" value="Detalle Cliente" class="btn btn-primary bg-gradient"/>
             </form>
         </div>
     </div>

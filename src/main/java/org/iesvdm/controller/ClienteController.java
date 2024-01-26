@@ -1,6 +1,7 @@
 package org.iesvdm.controller;
 
 import org.iesvdm.domain.Cliente;
+import org.iesvdm.dto.AgentStatisticsDTO;
 import org.iesvdm.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,9 @@ public class ClienteController {
 
         Cliente cliente = clienteService.one(id);
         model.addAttribute("cliente", cliente);
+
+        List<AgentStatisticsDTO> listaFacturacionComercialesDTO = clienteService.estadisticasComercialAsociado(id);
+        model.addAttribute("listaFacturacionComercialesDTO", listaFacturacionComercialesDTO);
 
         return "detalleCliente";
     }

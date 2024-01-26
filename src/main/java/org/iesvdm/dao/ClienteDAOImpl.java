@@ -2,6 +2,7 @@ package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.domain.Cliente;
+import org.iesvdm.domain.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -133,4 +134,28 @@ public class ClienteDAOImpl implements ClienteDAO{
 
         log.info("Delete de Cliente con {} registros eliminados.", rows);
     }
+
+
+    public Optional<List<Comercial>> comercialesAsociados(Integer idCliente){
+
+        List<Comercial> comercialList = jdbcTemplate.query(
+                "SELECT DISTINCT c.* FROM comercial c join pedido p on c.id = p.id_comercial join cliente cl on p.id_cliente = cl.id where cl.id = ?",
+                (rs, rowNum) -> new Comercial(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido1"),
+                        rs.getString("apellido1"),
+                        rs.getFloat("comisión")
+                ), idCliente);
+
+        if (comercialList != null) {
+            return Optional.of(comercialList);
+        }
+        else {
+            log.info("No hay comerciales asociados.");
+            return Optional.empty();
+        }
+    }
+
+
 }
