@@ -72,7 +72,7 @@
         <div style="float: none;width: auto;overflow: hidden;text-align: center;" th:text="#{etq.accion}">Acción</div>
     </div>
     <!-- LISTADO PEDIDOS -->
-    <div  th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
+    <div  th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" th:class="'clearfix ' + ${detallesPedidos.id_Pedido_Min == detallesPedidos.id_Pedido_Max ? '' : pedido.id == detallesPedidos.id_Pedido_Min ? 'bg-warning' : pedido.id == detallesPedidos.id_Pedido_Max ? 'bg-success' : ''} + ' rounded'">
         <div class="ps-3" style="float: left;width: 8%" th:text="${pedido.id}">output</div>
         <div style="float: left;width: 14%" th:text="${#numbers.formatDecimal(pedido.total, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">output</div>
         <div style="float: left;width: 14%" th:text="${pedido.fecha}">output</div>
@@ -85,12 +85,17 @@
         </div>
     </div>
 
+
+    <th:block th:if="${detallesPedidos != null}">
+
+        <th:block th:if="${detallesPedidos.id_Pedido_Min != detallesPedidos.id_Pedido_Max}">
     <!-- ESTADÍSTICAS PEDIDOS -->
     <div class="clearfix col-8 p-3 m-2 bg-light bg-gradient text-muted rounded">
         <div style="float: left;width: 40%" th:text="#{title.pedido.estadisticas}">Estadísticas:</div>
         <div style="float: right;width: 50%" th:text="#{etq.pedidos.media}+' '+${#numbers.formatDecimal(detallesPedidos.media, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">Importe medio pedidos</div>
         <div style="float: right;width: 50%" th:text="#{etq.pedidos.suma}+' '+${#numbers.formatDecimal(detallesPedidos.sumaTotal, 1, 'DEFAULT', 2, 'DEFAULT')+' €'}">Importe total pedidos</div>
     </div>
+        </th:block>
 
     <!-- TITULO FACTURACIÓN/CLIENTE -->
     <div class="clearfix">
@@ -115,6 +120,11 @@
                 <input type="submit" th:value="#{btn.detalleCliente}" value="Detalle Ciente" class="btn btn-primary bg-gradient"/>
             </form>
         </div>
+    </div>
+    </th:block>
+
+    <div th:unless="${detallesPedidos != null}">
+        <div th:text="#{msg.NoHayPedidos}" class="ps-3 text-danger">No hay pedidos</div>
     </div>
 
 </div>

@@ -58,6 +58,7 @@ public class ComercialService {
 
     public List<Pedido> pedidosComercial(Integer id){
         Optional<List<Pedido>> optPedidos = pedidoDAO.findPedidoByComercialId(id);
+
         if (optPedidos.isPresent())
             return optPedidos.get();
         else
@@ -68,25 +69,34 @@ public class ComercialService {
 
         List<Pedido> pedidosComercial = pedidosComercial(id);
 
-        int id_pedido_max = pedidosComercial.stream()
-                .max(comparing(Pedido::getTotal))
-                .map(Pedido::getId).get();
+        if(pedidosComercial.size() > 0){
+            int id_pedido_max = pedidosComercial.stream()
+                    .max(comparing(Pedido::getTotal))
+                    .map(Pedido::getId).get();
 
-        int id_pedido_min = pedidosComercial.stream()
-                .min(comparing(Pedido::getTotal))
-                .map(Pedido::getId).get();
+            int id_pedido_min = pedidosComercial.stream()
+                    .min(comparing(Pedido::getTotal))
+                    .map(Pedido::getId).get();
 
-        DoubleSummaryStatistics pedidoStatics = pedidosComercial.stream()
-                .collect(summarizingDouble(Pedido::getTotal));
+            DoubleSummaryStatistics pedidoStatics = pedidosComercial.stream()
+                    .collect(summarizingDouble(Pedido::getTotal));
 
-        PedidoDetailsDTO pedidoDTO = new PedidoDetailsDTO(
-                pedidoStatics.getCount(),
-                pedidoStatics.getSum(),
-                pedidoStatics.getAverage(),
-                id_pedido_min,
-                id_pedido_max);
+            PedidoDetailsDTO pedidoDTO = new PedidoDetailsDTO(
+                    pedidoStatics.getCount(),
+                    pedidoStatics.getSum(),
+                    pedidoStatics.getAverage(),
+                    id_pedido_min,
+                    id_pedido_max);
 
-        return pedidoDTO;
+            return pedidoDTO;
+
+        }else{
+            return null;
+        }
     }
+
+
+
+
 
 }
