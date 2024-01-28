@@ -21,25 +21,37 @@
             </div>
 
 
-            <div style="margin-top: 6px;" class="clearfix">
-                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.nombre}">Nombre</div>
-                <div style="float: none;width: auto;overflow: hidden;">
-                    <input th:field="*{nombre}" class="border"/>
+            <div class="container clearfix mt-4">
+                <div class="row mb-2">
+                    <div class="col-5 me-4 text-end" th:text="#{etq.nombre}">Nombre</div>
+                    <input th:field="*{nombre}" class="col-3 border" th:classappend="${#fields.hasErrors('nombre')?'border-danger-subtle':''}"/>
+                    <div class="col-3 text-danger" th:if="${#fields.hasErrors('nombre')}">
+                        <span style="float: left" th:each="error : ${#fields.errors('nombre')}" th:text="${error}"/>
+                    </div>
                 </div>
 
-                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido1}">Apellido1</div>
-                <div style="float: none;width: auto;overflow: hidden;">
-                    <input th:field="*{apellido1}" class="border"/>
+                <div class="row mb-2">
+                    <div class="col-5 me-4 text-end" th:text="#{etq.apellido1}">Apellido1</div>
+                    <input th:field="*{apellido1}" class="col-3 border" th:classappend="${#fields.hasErrors('apellido1')?'border-danger-subtle':''}"/>
+                    <div class="col-3 text-danger" th:if="${#fields.hasErrors('apellido1')}">
+                        <span style="float: left" th:each="error : ${#fields.errors('apellido1')}" th:text="${error}"/>
+                    </div>
                 </div>
 
-                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido2}">Apellido1</div>
-                <div style="float: none;width: auto;overflow: hidden;">
-                    <input th:field="*{apellido2}" class="border"/>
+                <div class="row mb-2">
+                    <div class="col-5 me-4 text-end" th:text="#{etq.apellido2}">Apellido2</div>
+                    <input th:field="*{apellido2}" class="col-3 border" th:classappend="${#fields.hasErrors('apellido2')?'border-danger-subtle':''}"/>
+                    <div class="col-3 text-danger" th:if="${#fields.hasErrors('apellido2')}">
+                        <span style="float: left" th:each="error : ${#fields.errors('apellido2')}" th:text="${error}"/>
+                    </div>
                 </div>
 
-                <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.comision}">Comisión</div>
-                <div style="float: none;width: auto;overflow: hidden;">
-                    <input th:field="*{comision}" class="border"/>
+                <div class="row mb-2">
+                    <div class="col-5 me-4 text-end" th:text="#{etq.comision}">Comisión</div>
+                    <input type="number" th:field="*{comision}" class="col-3 border" th:classappend="${#fields.hasErrors('comision')?'border-danger-subtle':''}"/>
+                    <div class="col-3 text-danger" th:if="${#fields.hasErrors('comision')}">
+                        <span style="float: left" th:each="error : ${#fields.errors('comision')}" th:text="${error}"/>
+                    </div>
                 </div>
             </div>
 

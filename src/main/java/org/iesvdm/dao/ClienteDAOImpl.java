@@ -38,8 +38,8 @@ public class ClienteDAOImpl implements ClienteDAO{
         // RECUPERANDO ID:
         // La triple comilla permite guardar una consulta SQL en bloque como cadena:
         String sqlInsert = """
-							INSERT INTO cliente (nombre, apellido1, apellido2, ciudad, categoría) 
-							VALUES  (     ?,         ?,         ?,       ?,         ?)
+							INSERT INTO cliente (nombre, apellido1, apellido2, email, ciudad, categoría) 
+							VALUES  (     ?,         ?,         ?,          ?,         ?,            ?)
 						   """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -50,6 +50,7 @@ public class ClienteDAOImpl implements ClienteDAO{
             ps.setString(idx++, cliente.getNombre());
             ps.setString(idx++, cliente.getApellido1());
             ps.setString(idx++, cliente.getApellido2());
+            ps.setString(idx++, cliente.getEmail());
             ps.setString(idx++, cliente.getCiudad());
             ps.setInt(idx, cliente.getCategoria());
             return ps;
@@ -69,6 +70,7 @@ public class ClienteDAOImpl implements ClienteDAO{
                         rs.getString("nombre"),
                         rs.getString("apellido1"),
                         rs.getString("apellido2"),
+                        rs.getString("email"),
                         rs.getString("ciudad"),
                         rs.getInt("categoría")
                 )
@@ -88,6 +90,7 @@ public class ClienteDAOImpl implements ClienteDAO{
                                 rs.getString("nombre"),
                                 rs.getString("apellido1"),
                                 rs.getString("apellido2"),
+                                rs.getString("email"),
                                 rs.getString("ciudad"),
                                 rs.getInt("categoría"))
                         , id
@@ -112,12 +115,14 @@ public class ClienteDAOImpl implements ClienteDAO{
 														nombre = ?, 
 														apellido1 = ?, 
 														apellido2 = ?,
+														email = ?,
 														ciudad = ?,
 														categoría = ?  
 												        WHERE id = ? """,
                                     cliente.getNombre()
                                     , cliente.getApellido1()
                                     , cliente.getApellido2()
+                                    , cliente.getEmail()
                                     , cliente.getCiudad()
                                     , cliente.getCategoria()
                                     , cliente.getId());
@@ -144,8 +149,8 @@ public class ClienteDAOImpl implements ClienteDAO{
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getString("apellido1"),
-                        rs.getString("apellido1"),
-                        rs.getFloat("comisión")
+                        rs.getString("apellido2"),
+                        rs.getBigDecimal("comisión")
                 ), idCliente);
 
         if (comercialList != null) {

@@ -14,5 +14,6 @@ public interface PedidoMapper {
 
     @Mapping(source = "id_cliente", target = "id_cliente")
     @Mapping(source = "id_comercial", target = "id_comercial")
-    public Pedido pedidoDTOToPedido(PedidoDetailsDTO pedidoDetailsDto);*/
+    public Pedido pedidoDTOToPedido(PedidoDetailsDTO pedidoDetailsDto);
+*/
 }

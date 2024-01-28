@@ -1,10 +1,12 @@
 package org.iesvdm.controller;
 
+import jakarta.validation.Valid;
 import org.iesvdm.domain.Cliente;
 import org.iesvdm.dto.AgentStatisticsDTO;
 import org.iesvdm.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,11 +59,16 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes/crear")
-    public RedirectView submitCrear(@ModelAttribute("cliente") Cliente cliente) {
+    public String submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResult, Model model) {
+
+        if(bindingResult.hasErrors()){
+
+            model.addAttribute("cliente", cliente);
+            return "crearCliente";
+        }
 
         clienteService.newCliente(cliente);
-
-        return new RedirectView("/clientes") ;
+        return "redirect:/clientes?new="+cliente.getId();
     }
 
     @GetMapping("/clientes/editar/{id}")
@@ -74,11 +81,18 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes/editar/{id}")
-    public RedirectView submitEditar(@ModelAttribute("cliente") Cliente cliente) {
+    public String submitEditar(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResult, Model model) {
+
+
+        if(bindingResult.hasErrors()){
+
+            model.addAttribute("cliente", cliente);
+
+            return "crearCliente";
+        }
 
         clienteService.replaceCliente(cliente);
-
-        return new RedirectView("/clientes");
+        return "redirect:/clientes?new="+cliente.getId();
     }
 
     @PostMapping("/clientes/borrar/{id}")

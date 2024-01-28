@@ -25,11 +25,12 @@
         <!-- CABECERA DETALLE CLIENTE -->
         <div class="clearfix p-3 mb-2 bg-secondary bg-gradient text-white rounded">
             <div style="float: left;width: 8%" th:text="#{etq.id}">Id</div>
-            <div style="float: left;width: 14%" th:text="#{etq.nombre}">Nombre</div>
-            <div style="float: left;width: 14%" th:text="#{etq.apellido1}">Apellido1</div>
-            <div style="float: left;width: 14%" th:text="#{etq.apellido2}">Apellido2</div>
-            <div style="float: left;width: 14%" th:text="#{etq.ciudad}">Ciudad</div>
-            <div style="float: left;width: 12%" th:text="#{etq.categoria}">Categoría</div>
+            <div style="float: left;width: 10%" th:text="#{etq.nombre}">Nombre</div>
+            <div style="float: left;width: 10%" th:text="#{etq.apellido1}">Apellido1</div>
+            <div style="float: left;width: 10%" th:text="#{etq.apellido2}">Apellido2</div>
+            <div style="float: left;width: 10%" th:text="#{etq.email}">Email</div>
+            <div style="float: left;width: 10%" th:text="#{etq.ciudad}">Ciudad</div>
+            <div style="float: left;width: 10%" th:text="#{etq.categoria}">Categoría</div>
             <div style="float: none;width: auto;overflow: hidden;text-align: center;" th:text="#{etq.accion}">Acción</div>
         </div>
         <!-- DATOS DETALLE CLIENTE -->
@@ -38,6 +39,7 @@
             <div style="float: left;width: 14%" th:text="${cliente.nombre}">output</div>
             <div style="float: left;width: 14%" th:text="${cliente.apellido1}">output</div>
             <div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">output</div>
+            <div style="float: left;width: 14%;overflow: hidden" th:text="${cliente.email ?: '&nbsp;'}">output</div>
             <div style="float: left;width: 14%" th:text="${cliente.ciudad}">output</div>
             <div style="float: left;width: 12%" th:text="${cliente.categoria}">output</div>
             <div style="float: none;width: auto;overflow: hidden;text-align: center;">

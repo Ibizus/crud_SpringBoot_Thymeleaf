@@ -21,30 +21,53 @@
         </div>
 
 
-        <div style="margin-top: 6px;" class="clearfix">
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.nombre}">Nombre</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{nombre}" class="border"/>
+        <div class="container clearfix mt-4">
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.nombre}">Nombre</div>
+                <input th:field="*{nombre}" class="col-3 border" th:classappend="${#fields.hasErrors('nombre')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('nombre')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('nombre')}" th:text="${error}"/>
+                </div>
             </div>
 
-            <div style="float: left;width: 50%;text-align: center" th:text="#{etq.apellido1}">Apellido1</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido1}" class="border"/>
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.apellido1}">Apellido1</div>
+                <input th:field="*{apellido1}" class="col-3 border" th:classappend="${#fields.hasErrors('apellido1')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('apellido1')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('apellido1')}" th:text="${error}"/>
+                </div>
             </div>
 
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.apellido2}">Apellido2</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{apellido2}" class="border"/>
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.apellido2}">Apellido2</div>
+                <input th:field="*{apellido2}" class="col-3 border" th:classappend="${#fields.hasErrors('apellido2')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('apellido2')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('apellido2')}" th:text="${error}"/>
+                </div>
             </div>
 
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.ciudad}">Ciudad</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{ciudad}" class="border"/>
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.email}">Email</div>
+                <input th:field="*{email}" class="col-3 border" th:classappend="${#fields.hasErrors('email')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('email')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('email')}" th:text="${error}"/>
+                </div>
             </div>
 
-            <div style="float: left;width: 50%;text-align: center;" th:text="#{etq.categoria}">Categoría</div>
-            <div style="float: none;width: auto;overflow: hidden;">
-                <input th:field="*{categoria}" class="border"/>
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.ciudad}">Ciudad</div>
+                <input th:field="*{ciudad}" class="col-3 border" th:classappend="${#fields.hasErrors('ciudad')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('ciudad')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('ciudad')}" th:text="${error}"/>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.categoria}">Categoría</div>
+                <input type="number" th:field="*{categoria}" class="col-3 border" th:classappend="${#fields.hasErrors('categoria')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('categoria')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('categoria')}" th:text="${error}"/>
+                </div>
             </div>
         </div>
 
