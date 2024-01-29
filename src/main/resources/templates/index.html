@@ -7,24 +7,24 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
 
-        <div style="float: none;width: auto;overflow: hidden;min-height: 200px;position: relative;">
-            <div style="position: absolute; left: 25%; top : 39%;">
+        <div class="row m-5 justify-content-center">
+            <div class="col-8 text-center">
                 <h1 class="text-light bg-dark text-center" th:text="#{title.index}">Bienvenido al Dashboard de Ventas</h1>
             </div>
         </div>
 
-        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-            <div style="position: absolute; left: 39%; top : 39%;">
+        <div class="row m-5 justify-content-center">
+            <div class="col-4 text-center">
                 <form action="/clientes">
                     <input type="submit" th:value="#{btn.index.cliente}" value="Clientes" class="btn btn-success bg-gradient">
                 </form>
             </div>
         </div>
 
-        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-            <div style="position: absolute; left: 38%; top : 39%;">
+        <div class="row m-5 justify-content-center">
+            <div class="col-4 text-center">
                 <form action="/comerciales">
                     <input type="submit" th:value="#{btn.index.comercial}" value="Comerciales" class="btn btn-warning bg-gradient">
                 </form>
