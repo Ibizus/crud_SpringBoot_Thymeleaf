@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DashBoard</title>
+    <th:block th:insert="~{fragments/head.html :: headfiles}"/>
+    <link rel="stylesheet" media="all" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div style="float: none;width: auto;overflow: hidden;min-height: 200px;position: relative;">
+            <div style="position: absolute; left: 25%; top : 39%;">
+                <h1 class="text-light bg-dark text-center" th:text="#{title.index}">Bienvenido al Dashboard de Ventas</h1>
+            </div>
+        </div>
+
+        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+            <div style="position: absolute; left: 39%; top : 39%;">
+                <form action="/clientes">
+                    <input type="submit" th:value="#{btn.index.cliente}" value="Clientes" class="btn btn-success bg-gradient">
+                </form>
+            </div>
+        </div>
+
+        <div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+            <div style="position: absolute; left: 38%; top : 39%;">
+                <form action="/comerciales">
+                    <input type="submit" th:value="#{btn.index.comercial}" value="Comerciales" class="btn btn-warning bg-gradient">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -30,16 +30,16 @@ CREATE TABLE pedido (
                         FOREIGN KEY (id_comercial) REFERENCES comercial(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO cliente VALUES(1, 'Aarón', 'Rivero', 'Gómez', 'Almería', 'correo@hotmail.com', 100);
-INSERT INTO cliente VALUES(2, 'Adela', 'Salas', 'Díaz', 'Granada', 'correo@yahoo.com', 200);
-INSERT INTO cliente VALUES(3, 'Adolfo', 'Rubio', 'Flores', 'Sevilla', 'correo@gmail.com', NULL);
-INSERT INTO cliente VALUES(4, 'Adrián', 'Suárez', NULL, 'Jaén', 'correo@gmail.com', 300);
-INSERT INTO cliente VALUES(5, 'Marcos', 'Loyola', 'Méndez', 'Almería', 'correo@hotmail.com', 200);
-INSERT INTO cliente VALUES(6, 'María', 'Santana', 'Moreno', 'Cádiz', 'correo@gmail.com', 100);
-INSERT INTO cliente VALUES(7, 'Pilar', 'Ruiz', NULL, 'Sevilla', 'correo@yahoo.com', 300);
-INSERT INTO cliente VALUES(8, 'Pepe', 'Ruiz', 'Santana', 'Huelva', 'correo@hotmail.com', 200);
-INSERT INTO cliente VALUES(9, 'Guillermo', 'López', 'Gómez', 'Granada', 'correo@gmail.com', 225);
-INSERT INTO cliente VALUES(10, 'Daniel', 'Santana', 'Loyola', 'Sevilla', 'correo@yahoo.com', 125);
+INSERT INTO cliente VALUES(1, 'Aarón', 'Rivero', 'Gómez', 'correo@hotmail.com', 'Almería', 100);
+INSERT INTO cliente VALUES(2, 'Adela', 'Salas', 'Díaz', 'correo@yahoo.com', 'Granada', 200);
+INSERT INTO cliente VALUES(3, 'Adolfo', 'Rubio', 'Flores', 'correo@gmail.com', 'Sevilla', NULL);
+INSERT INTO cliente VALUES(4, 'Adrián', 'Suárez', NULL, 'correo@gmail.com', 'Jaén', 300);
+INSERT INTO cliente VALUES(5, 'Marcos', 'Loyola', 'Méndez', 'correo@hotmail.com', 'Almería', 200);
+INSERT INTO cliente VALUES(6, 'María', 'Santana', 'Moreno', 'correo@gmail.com', 'Cádiz', 100);
+INSERT INTO cliente VALUES(7, 'Pilar', 'Ruiz', NULL, 'correo@yahoo.com', 'Sevilla', 300);
+INSERT INTO cliente VALUES(8, 'Pepe', 'Ruiz', 'Santana', 'correo@hotmail.com', 'Huelva', 200);
+INSERT INTO cliente VALUES(9, 'Guillermo', 'López', 'Gómez', 'correo@gmail.com', 'Granada', 225);
+INSERT INTO cliente VALUES(10, 'Daniel', 'Santana', 'Loyola', 'correo@yahoo.com', 'Sevilla', 125);
 
 INSERT INTO comercial VALUES(1, 'Daniel', 'Sáez', 'Vega', 0.55);
 INSERT INTO comercial VALUES(2, 'Juan', 'Gómez', 'López', 0.333);

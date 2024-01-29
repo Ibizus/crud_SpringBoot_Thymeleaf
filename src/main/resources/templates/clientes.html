@@ -27,8 +27,8 @@
         <div style="float: left;width: 10%" th:text="#{etq.apellido1}">Apellido1</div>
         <div style="float: left;width: 10%" th:text="#{etq.apellido2}">Apellido2</div>
         <div style="float: left;width: 10%" th:text="#{etq.email}">Email</div>
-        <div style="float: left;width: 10%" th:text="#{etq.ciudad}">Ciudad</div>
-        <div style="float: left;width: 10%" th:text="#{etq.categoria}">Categoría</div>
+        <div style="float: left;width: 10%" class="text-end" th:text="#{etq.ciudad}">Ciudad</div>
+        <div style="float: left;width: 10%" class="text-end" th:text="#{etq.categoria}">Categoría</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;" th:text="#{etq.accion}"></div>
     </div>
 
@@ -38,8 +38,8 @@
         <div style="float: left;width: 10%" th:text="${cliente.apellido1}">output</div>
         <div style="float: left;width: 10%" th:text="${cliente.apellido2 ?: '&nbsp;'}">output</div>
         <div style="float: left;width: 10%;overflow: hidden" th:text="${cliente.email}">output</div>
-        <div style="float: left;width: 10%" th:text="${cliente.ciudad ?: '&nbsp;'}">output</div>
-        <div style="float: left;width: 10%" th:text="${cliente.categoria}">output</div>
+        <div style="float: left;width: 10%" class="text-end" th:text="${cliente.ciudad ?: '&nbsp;'}">output</div>
+        <div style="float: left;width: 10%" class="text-end" th:text="${cliente.categoria}">output</div>
         <div style="float: none;width: auto;overflow: hidden;text-align: center;">
             <form th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
                 <input type="submit" th:value="#{btn.detalle}" value="Ver Detalle" class="btn btn-primary bg-gradient"/>

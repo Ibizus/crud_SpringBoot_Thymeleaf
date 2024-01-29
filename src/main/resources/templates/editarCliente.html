@@ -47,6 +47,14 @@
             </div>
 
             <div class="row mb-2">
+                <div class="col-5 me-4 text-end" th:text="#{etq.email}">Email</div>
+                <input th:field="*{email}" class="col-3 border" th:classappend="${#fields.hasErrors('email')?'border-danger-subtle':''}"/>
+                <div class="col-3 text-danger" th:if="${#fields.hasErrors('email')}">
+                    <span style="float: left" th:each="error : ${#fields.errors('email')}" th:text="${error}"/>
+                </div>
+            </div>
+
+            <div class="row mb-2">
                 <div class="col-5 me-4 text-end" th:text="#{etq.ciudad}">Ciudad</div>
                 <input th:field="*{ciudad}" class="col-3 border" th:classappend="${#fields.hasErrors('ciudad')?'border-danger-subtle':''}"/>
                 <div class="col-3 text-danger" th:if="${#fields.hasErrors('ciudad')}">

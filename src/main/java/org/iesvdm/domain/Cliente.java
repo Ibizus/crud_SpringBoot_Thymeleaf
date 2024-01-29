@@ -27,6 +27,7 @@ public class Cliente {
     @Length(max=30, message="{msg.valid.maxLenght}")
     private String apellido2;
 
+    @NotBlank(message="{msg.valid.blank}")
     @Email(message="{msg.valid.email}")
     @Length(max=100, message="{msg.valid.maxLenght}")
     private String email;
