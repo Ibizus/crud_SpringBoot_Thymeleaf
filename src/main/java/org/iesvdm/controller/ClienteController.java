@@ -88,7 +88,7 @@ public class ClienteController {
 
             model.addAttribute("cliente", cliente);
 
-            return "crearCliente";
+            return "editarCliente";
         }
 
         clienteService.replaceCliente(cliente);

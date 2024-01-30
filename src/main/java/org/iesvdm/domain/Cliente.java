@@ -37,7 +37,6 @@ public class Cliente {
     @Length(max=30, message="{msg.valid.maxLenght}")
     private String ciudad;
 
-    @Pattern(regexp = "\\d00", message="{msg.valid.pattern}")
     @Min(value=100, message="{msg.valid.min}")
     @Max(value=1000, message="{msg.valid.max}")
     private int categoria;
